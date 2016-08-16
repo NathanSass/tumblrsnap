@@ -53,8 +53,7 @@ public class PhotosFragment extends Fragment {
 	ListView lvPhotos;
 	
 	@Override 
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_photos, container, false);
 		setHasOptionsMenu(true);
 		return view;
