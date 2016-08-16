@@ -108,6 +108,11 @@ public class PhotosFragment extends Fragment {
 		}
 	}
 
+    public void pickPhotoFromLibrary() {
+        Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(i, PICK_PHOTO_CODE);
+    }
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
@@ -119,7 +124,7 @@ public class PhotosFragment extends Fragment {
 			break;
 			case R.id.action_use_existing:
 			{
-				// Take the user to the gallery app
+				pickPhotoFromLibrary();
 			}
 			break;
 		}
@@ -136,9 +141,14 @@ public class PhotosFragment extends Fragment {
 				 cropPhoto(photoUri);
 			} else if (requestCode == PICK_PHOTO_CODE) {
 				// Extract the photo that was just picked from the gallery
-				
-				// Call the method below to trigger the cropping
-				// cropPhoto(photoUri)
+                if (data != null) {
+                    photoUri = data.getData();
+                    cropPhoto(photoUri);
+                } else {
+                    Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
+
+                // Call the method below to trigger the cropping
 			} else if (requestCode == CROP_PHOTO_CODE) {
 				photoBitmap = data.getParcelableExtra("data");
 				startPreviewPhotoActivity();
