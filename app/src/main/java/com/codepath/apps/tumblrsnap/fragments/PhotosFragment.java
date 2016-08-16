@@ -1,18 +1,8 @@
 package com.codepath.apps.tumblrsnap.fragments;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Locale;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -28,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.codepath.apps.tumblrsnap.PhotosAdapter;
 import com.codepath.apps.tumblrsnap.R;
@@ -35,6 +26,17 @@ import com.codepath.apps.tumblrsnap.TumblrClient;
 import com.codepath.apps.tumblrsnap.activities.PreviewPhotoActivity;
 import com.codepath.apps.tumblrsnap.models.Photo;
 import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Locale;
 
 public class PhotosFragment extends Fragment {
 	private static final int TAKE_PHOTO_CODE = 1;
@@ -82,12 +84,38 @@ public class PhotosFragment extends Fragment {
 		inflater.inflate(R.menu.photos, menu);
 	}
 
+	public void startCamera() {
+		PackageManager pm = getActivity().getPackageManager();
+		if (pm.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+			Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+			if (i.resolveActivity(pm) != null) {
+				File photo = getOutputMediaFile();
+				if (photo != null) {
+					photoUri = Uri.fromFile(photo);
+					i.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+					startActivityForResult(i, TAKE_PHOTO_CODE );
+				} else {
+					Toast.makeText(getActivity(), "Darn there's been an error.", Toast.LENGTH_SHORT).show();
+				}
+
+			} else {
+				Toast.makeText(getActivity(), "You don't have any photo taking apps.", Toast.LENGTH_SHORT).show();
+
+			}
+		} else {
+			Toast.makeText(getActivity(), "No camera detected", Toast.LENGTH_SHORT).show();
+
+		}
+	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 			case R.id.action_take_photo:
 			{
 				// Take the user to the camera app
+				startCamera();
 			}
 			break;
 			case R.id.action_use_existing:
@@ -106,7 +134,7 @@ public class PhotosFragment extends Fragment {
 				// Extract the photo that was just taken by the camera
 				
 				// Call the method below to trigger the cropping
-				// cropPhoto(photoUri)
+				 cropPhoto(photoUri);
 			} else if (requestCode == PICK_PHOTO_CODE) {
 				// Extract the photo that was just picked from the gallery
 				
