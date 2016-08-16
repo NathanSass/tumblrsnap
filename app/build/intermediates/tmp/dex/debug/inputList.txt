@@ -1,0 +1,9 @@
+/Users/nathansass/AndroidStudioProjects/tumblrsnap-master/app/build/intermediates/classes/debug
+/Users/nathansass/AndroidStudioProjects/tumblrsnap-master/app/build/intermediates/pre-dexed/debug/codepath-utils-50e2b65c06a72ce23e6ea702e3702783c1e6ddcc.jar
+/Users/nathansass/AndroidStudioProjects/tumblrsnap-master/app/build/intermediates/pre-dexed/debug/codepath-android-view-helpers-0.1.0-4d0033185d628da919da5044fe931d481c9b283d.jar
+/Users/nathansass/AndroidStudioProjects/tumblrsnap-master/app/build/intermediates/pre-dexed/debug/codepath-oauth-0.2.3-d2b781151f9ce9728f27c9074d6800db1cad5390.jar
+/Users/nathansass/AndroidStudioProjects/tumblrsnap-master/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.3-28e8e583490ae18802b935729c6a68d176b65c26.jar
+/Users/nathansass/AndroidStudioProjects/tumblrsnap-master/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.8.4-0adad974c048c0152779975bf1dd6f9bd5f56a04.jar
+/Users/nathansass/AndroidStudioProjects/tumblrsnap-master/app/build/intermediates/pre-dexed/debug/scribe-7a3e0d985da64fb06ee306dc2d87f2f8d431e757.jar
+/Users/nathansass/AndroidStudioProjects/tumblrsnap-master/app/build/intermediates/pre-dexed/debug/androidjhlabs-791b480937dbeded93a992417ad13f9e338191c1.jar
+/Users/nathansass/AndroidStudioProjects/tumblrsnap-master/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-4104f2071cd8bcbfa5bb5a3d1983f05d51a3ff87.jar
